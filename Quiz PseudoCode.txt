@@ -1,0 +1,113 @@
+Quiz PseudoCode 
+
+OverAll
+
+Points Start at 0, 
+    code {
+        let points = 0;
+
+    }
+
+Start the clock at 10 minutes,
+
+<HTML>
+    <body onload = "countdown();">
+        <div>
+            Time Left :: 
+                <iput id="minutess" type = "text" style= "width: 10px; border: non; font-size: 16px; font-weight: bold: color black;> <font size ='5'>;
+                <input id="seconds" type = "text" style = width: 20px; border: none; font-size: 16px font-weight: bold; color: black;
+    </body>
+</HTML
+
+code {
+
+    set minutes = 10;
+         set seconds = minutes * 60;
+
+            // countdown function is evoked when page is loaded 
+
+
+     function countdown() {
+         setTimeout('Decrement()' , 60);
+            }
+        
+            //Decrement function decrement the value
+
+
+    function Decrement() {
+         if (deocument.getElementById) {
+             minutes = document.getElementById('minutess');
+            seconds = document.getElementById('seconds');
+
+                    //if less than a minutess remains, display only seconds value
+                
+             if (seconds < 59){
+                seconds.value = secs;
+            }
+            else {
+                 minutess.value = getminutes();
+                seconds.vallue = getseconds();
+            }
+
+                // when less than a minute remaining color of the minutes and seconds change to red
+
+            if (mins < 1 ) {
+                minutess.style.color= 'red';
+                seconds.style.color = 'red';
+             }
+                
+                //if seconds becomes zero then page alert time toUpperCase
+
+            if (mins < 0) {
+                alert('time up');
+                minutes.value=0;
+                seconds.value = 0;
+            }
+
+             else {
+                 //if seconds > 0 then seconds is decremented
+                secs--;
+                setTimeout('Decrement()' , 1000); 
+            }
+        }
+
+    }
+
+        function getminutess() {
+            // mimnutess is seconds divided 
+
+            minutess = Math.floor(sec / 60);
+            return mins;
+        }
+
+        function getseconds() {
+            take minutess remaining (as seconds) away
+        }
+    }
+
+
+remove 10 seconds from the clock if answered incorrectly
+
+Question types: 
+
+    Multple Choice
+    questions are to stored in an array. 
+
+    
+
+Each question should appear one at a time
+
+user must enter the answer correctly before prompted with the next question.
+
+If answered correctly show next question. 
+
+If all quesstions are answered calculate scroe,
+
+Show score,
+
+Allow user to input initials,
+use local storage? 
+Allow user to save score 
+
+start button
+    startbutton.addEventListen('click', )

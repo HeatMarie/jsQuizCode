@@ -64,8 +64,7 @@ let currentQuestion = questions[currentQuestionIndex];
 let timer = document.getElementById('timer');
 let timeLeft = 60;
 let quizTime = 0;
-
-
+let score = 0;
 
 
 
@@ -78,14 +77,19 @@ function countDown() {
             timer.innerHTML = "Time: " + timeLeft;
 
             if(timeLeft <= 0){
+                clearQuizContainer();
                 clearInterval(quizTime);
                 timer.innerHTML = "Time's up!"
             }
+            // This is close, but no. It shows Quiz Complete before last question is Answered. 
+            // if(currentQuestionIndex >= questions.length){
+            //     timer.innerHTML = "Quiz Complete"
+            
+            // }
         }, 1000)
     }
 
 }
-
 
 
 function clearQuizContainer(){
@@ -118,8 +122,20 @@ function updateQuestion() {
     } else { 
         // TODO: run quiz complete method. 
         // stop timer
+        //Why does this work correctly but the one in the quiz time does not? 
+        if(currentQuestionIndex >= questions.length){
+            clearInterval(quizTime);
+            timer.innerHTML = "Quiz Complete";
+            timeLeft = timeLeft;
+            score = timeLeft;
+            
+            
+        }
       console.log("done?")
+      console.log("timeLeft", timeLeft);
+      console.log("score", score)
     }
+    scoreForm();
 }
 
 function handleAnswerClicked(isCorrect) {
@@ -146,7 +162,7 @@ function setOptions() {
 
         
         const text = document.createElement('p'); 
-        text.setAttribute("class", "option");ls
+        text.setAttribute("class", "option");
         text.innerHTML = option;
 
         button.appendChild(text);
@@ -155,17 +171,37 @@ function setOptions() {
 }
 
 function quizComplete() {
-    if(timeLeft === 0)
-    console.log("quizComplete")
+    console.log("quiz Complete")
+};
+
+const quizForm = document.getElementById("scoreForm")
+
+function scoreForm() {
+
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit.php");
+
+    let initials = document.createElement("input");
+    initials.setAttribute("type", "text");
+    initials.setAttribute("name", "Initials");
+    initials.setAttribute("placeholder", "Initials")
+
+    let sub = document.createElement("input");
+    sub.setAttribute("type", "submit");
+    sub.setAttribute("value", "Submit");
+
+    form.appendChild(initials);
+    form.appendChild(sub)
+    quizForm.innerHTML = form;
+    
 }
 
-quizComplete();
 
 
 
-if (currentQuestionIndex === 0){
-    console.log(timer)
-}
+
+
 
 /* ============ EventListeners ============= */
 

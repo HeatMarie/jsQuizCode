@@ -66,7 +66,7 @@ let timeLeft = 60;
 let quizTime = 0;
 let score = 0;
 let userInitials = '';
-
+const answerResponse = document.getElementById("answerResult")
 
 
 
@@ -81,20 +81,30 @@ function countDown() {
                 clearQuizContainer();
                 clearInterval(quizTime);
                 timer.innerHTML = "Time's up!"
+                quizFailed() 
             }
-            // This is close, but no. It shows Quiz Complete before last question is Answered. 
-            // if(currentQuestionIndex >= questions.length){
-            //     timer.innerHTML = "Quiz Complete"
-            
-            // }
         }, 1000)
     }
-
 }
 
 
+function resultCorrect() {
+        const correctResult = document.getElementById("answerResult")
+        correctResult.textContent = "That is correct!";
+        correctResult.style.display = "block";
+        correctResult.style.color = "Green"
+}
+
+function incorrectResult() {
+        const incorrectResult = document.getElementById("answerResult")
+        incorrectResult.textContent = "That is incorrect! Try again!";
+        incorrectResult.style.display = "block"; 
+        incorrectResult.style.color = "red";
+}
+
 function clearQuizContainer(){
     quizContainer.innerHTML = '';
+   
 
 }
 
@@ -103,6 +113,8 @@ function setQuestion(){
     header.setAttribute("id", "question")
     header.innerHTML = currentQuestion.question;
     quizContainer.appendChild(header);
+    
+    
 }
 
 function startQuiz(){
@@ -120,36 +132,38 @@ function updateQuestion() {
         currentQuestionIndex++
         setQuestion(); 
         setOptions();
+        
     } else { 
         // TODO: run quiz complete method. 
         scoreForm();
         // stop timer
-        //Why does this work correctly but the one in the quiz time does not? 
+
         if(currentQuestionIndex >= questions.length){
             clearInterval(quizTime);
             timer.innerHTML = "Quiz Complete";
             timeLeft = timeLeft;
             score = timeLeft;
         }
-      console.log("done?")
-      console.log("timeLeft", timeLeft);
-      console.log("score", score)
     }
 }
 
-function handleAnswerClicked(isCorrect) {
+function handleAnswerClicked(isCorrect) {    
     console.log("Answer is correct", isCorrect)
     if(isCorrect) {
+        resultCorrect();
         updateQuestion(); 
-        
-    
+       
     } else {
         //subtract time
         timeLeft = timeLeft - 10;
-        timer.innerHTML = "Time: " + timeLeft;
+        timer.innerHTML = "Time: " + timeLeft; 
+        incorrectResult();
     }
     
 }
+
+
+
 
 function setOptions() {
     const correctAnswer = currentQuestion.correctAnswer;
@@ -170,9 +184,20 @@ function setOptions() {
     })
 }
 
-function quizComplete() {
-    console.log("quiz Complete")
+
+
+
+
+function quizFailed() {
+       const failed = document.getElementById("failed");
+       failedText = document.createElement('p')
+       failedText.innerHTML = "You failed! Start Quiz to try again!"
+        failedText.style.color = "red";
+        quizContainer.appendChild(failedText);
+        startQuizButton.style.display = "block";
 };
+
+
 
 const quizForm = document.getElementById("scoreForm")
 
@@ -231,74 +256,3 @@ startQuizButton.addEventListener('click', startQuiz);
 
 
 
-
-
-
-
-
-
-
-
-
-/* ========================= */
-
-
-
-// let beginQuiz = document.querySelector("#startQuiz");
-// let quiz = document.querySelector("#quiz");
-// let seconds = 30;
-// let questionsEl = document.querySelector('#quiz')
-// quiz.style.display = 'none';
-
-
-
-
-
-
-/* clicking start to begin quiz and timer*/
-// beginQuiz.addEventListener('click', () => {
-//     if(quiz.style.display === 'none'){
-//         quiz.style.display = 'block';
-//     }
-
-//    let seconds = 30, $seconds = document.querySelector('.timer');
-//         (function countdown() {
-//         $seconds.textContent = seconds + ' second' + (seconds == 1 ? '' : 's')
-//         if(seconds --> 0) setTimeout(countdown, 3000)
-//         })();
-
-// }); 
-
-/*show first question*/
-
-// for(let i = 0, len = questions.length; i < len; i++){
-//     for(let q of questions){
-//         console.log("Questions[i]", questions[i])
-//         document.querySelector("#quiz").textContent = questions;
-//     }
-// }
-
-/*If question is wrong, display wrong, && subtract 5 seconds from timer*/
-
-/* else if question is correct display correct */
-
-/* if question is correct && timer !== 0 && questions !== 0, display next question*/ 
-
-
-/* if questions === 0 || timer === 0 end quiz 
-
-    if(questions === 0 || timer === 0) {
-        quiz.style.display = 'none';
-        forum.style.display = 'block';
-    }
-
-*/
-
-/* display quiz score (score === time) */
-
-/* Have form for intials and allow user to save their score via localStorage */
-
-// function saveQuiz() {
-//     let saveScore = 
-
-// }

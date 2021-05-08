@@ -65,6 +65,7 @@ let timer = document.getElementById('timer');
 let timeLeft = 60;
 let quizTime = 0;
 let score = 0;
+let userInitials = '';
 
 
 
@@ -121,6 +122,7 @@ function updateQuestion() {
         setOptions();
     } else { 
         // TODO: run quiz complete method. 
+        scoreForm();
         // stop timer
         //Why does this work correctly but the one in the quiz time does not? 
         if(currentQuestionIndex >= questions.length){
@@ -128,20 +130,18 @@ function updateQuestion() {
             timer.innerHTML = "Quiz Complete";
             timeLeft = timeLeft;
             score = timeLeft;
-            
-            
         }
       console.log("done?")
       console.log("timeLeft", timeLeft);
       console.log("score", score)
     }
-    scoreForm();
 }
 
 function handleAnswerClicked(isCorrect) {
     console.log("Answer is correct", isCorrect)
     if(isCorrect) {
         updateQuestion(); 
+        
     
     } else {
         //subtract time
@@ -178,28 +178,49 @@ const quizForm = document.getElementById("scoreForm")
 
 function scoreForm() {
 
-    const form = document.createElement("form");
+    const form = document.createElement("FORM");
     form.setAttribute("method", "post");
     form.setAttribute("action", "submit.php");
+    form.addEventListener("click", function(event){
+        event.preventDefault();
+    })
 
     let initials = document.createElement("input");
     initials.setAttribute("type", "text");
     initials.setAttribute("name", "Initials");
     initials.setAttribute("placeholder", "Initials")
+    initials.addEventListener("change", function(event){
+        event.preventDefault();
+        userInitials = event.target.value;
+    });
+
+
 
     let sub = document.createElement("input");
     sub.setAttribute("type", "submit");
     sub.setAttribute("value", "Submit");
-
+    sub.addEventListener("click", function(event){
+        event.preventDefault();
+        savingScore();
+        clearQuizContainer();
+        window.location.href="highScore.html"
+    })
+   
     form.appendChild(initials);
     form.appendChild(sub)
-    quizForm.innerHTML = form;
-    
+    quizContainer.appendChild(form)
 }
 
+function savingScore() {
+    const storage = window.localStorage;
+    const scoreHistory = JSON.parse(storage.getItem('score')) || [];      
+    const timeStamp = new Date().toUTCString() 
+    const newScore = {score, userInitials, timeStamp}
+    scoreHistory.push(newScore); 
+    storage.setItem('score', JSON.stringify(scoreHistory));
+    console.log("score, userInitials", score, userInitials);
 
-
-
+}
 
 
 

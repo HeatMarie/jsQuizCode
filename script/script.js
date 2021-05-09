@@ -48,7 +48,7 @@ const questions = [
             "last()",
             "put()",
             "push()",
-            "none of the above()",
+            "none of the above()gt",
            ],    
             correctAnswer: 3
     

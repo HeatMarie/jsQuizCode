@@ -49,21 +49,27 @@ h2 {
     text-align: left;
 }
 
-
+h1{
+    text-align: center;
+    font-size: 40px;
+}
 
 .highScores {
-    border: 10px solid purple;
+   
     padding-right: 15px;
 }
 
 #highScores p {
     background-color:black;
     color:white;
-    margin: 10px;
+    margin: 10px 170px 20px 19px;
     padding: 10px;
     font-size: 20px;
+    
 }
 
-#highScores li {
-    background-color: black;
+ol {
+    margin-left: 210px;
+    margin-right: 240px;
+    margin-top: 75px;
 }

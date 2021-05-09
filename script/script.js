@@ -1,54 +1,54 @@
 const questions = [
     {
-        question: "this is question one",       
+        question: "What goes inside the HTML tag for Javascript?",       
             options: [
-             "This is option A",
-             "This is option B",
-             "This is option C",
-             "this is option D",
+             "script",
+             "scripted",
+             "javascript",
+             "js",
             ],     
             correctAnswer: 1
     },
     {
-        question: "This is question two",        
+        question: "Which function of an Array object calls a function for each element in the array",        
         options: [
-            "This is option A2",
-            "This is option B2",
-            "This is option C2",
-            "this is option D2",
+            "every()",
+            "forEach()",
+            "forEvery()",
+            "each()",
            ],   
             correctAnswer: 2
     },
 
     {
-        question: "this is question three",      
+        question: "How is a function called in JavaScript",      
         options: [
-            "This is option A3",
-            "This is option B3",
-            "This is option C3",
-            "this is option D3",
+            "call Javascript()",
+            "call(Javascript)",
+            "JavaScript()",
+            "function JavaScript()",
            ],       
             correctAnswer: 3
     },
 
     {
-        question: "this is question four",        
+        question: "How do you write a multi-line comment in JavaScript",        
         options: [
-            "This is option A4",
-            "This is option B4",
-            "This is option C4",
-            "this is option D4",
+            "<! This is a Comment !>",
+            "// This is how",
+            "/*This is multi line comment",
+            "** This is a multi line comment",
            ],       
             correctAnswer: 4
     },
 
     {
-        question: "this is question five",        
+        question: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",        
         options: [
-            "This is option A5",
-            "This is option B5",
-            "This is option C5",
-            "this is option D5",
+            "last()",
+            "put()",
+            "push()",
+            "none of the above()",
            ],    
             correctAnswer: 3
     
@@ -89,12 +89,8 @@ function countDown() {
 }
 
 
-
-
 function clearQuizContainer(){
     quizContainer.innerHTML = '';
-   
-
 }
 
 function setQuestion(){
@@ -122,9 +118,7 @@ function tryAgain(){
      tryAgainButton.style.display = "none";
     //start timer
     countDown();
-    updateQuestion();
-  
-     
+    updateQuestion();    
 }  
 
 function updateQuestion() {

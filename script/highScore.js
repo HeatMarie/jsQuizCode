@@ -3,7 +3,7 @@ let highScore = []
 // let highScoreIndex = 0;
 console.log(highScore)
 
-
+// This method creates a function that gets the stuff from storage and sorts it by the score in descending order
 
 function getHighScores() {
     const storage = window.localStorage;
@@ -21,6 +21,8 @@ function getHighScores() {
     highScore.push(scoreHistory);
     
 }
+
+// This function creates listitems and paragraphs and appends them to the child
 
 function createScoreListItem(scoreData) {
     const listItem = document.createElement('li'); 

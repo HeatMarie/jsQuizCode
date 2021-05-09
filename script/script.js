@@ -1,3 +1,6 @@
+
+// The following is the array of questions
+
 const questions = [
     {
         question: "What goes inside the HTML tag for Javascript?",       
@@ -56,6 +59,8 @@ const questions = [
 ];
 
 
+//The following is the variables for the quizCode 
+
 
 const startQuizButton = document.getElementById('startQuiz');
 const tryAgainButton = document.getElementById('tryAgainButton')
@@ -70,6 +75,7 @@ let userInitials = '';
 const answerResponse = document.getElementById("answerResult")
 
 
+// The method below is counts down the time left
 
 function countDown() {
 
@@ -88,10 +94,13 @@ function countDown() {
     }
 }
 
+// This clears the quiz container 
 
 function clearQuizContainer(){
     quizContainer.innerHTML = '';
 }
+
+// creates a header that stores the question 
 
 function setQuestion(){
     const header = document.createElement("h2"); 
@@ -102,6 +111,7 @@ function setQuestion(){
     
 }
 
+// when the button is clicked the start button displays none, the countdown begins, and the question is updated
 function startQuiz(){
     startQuizButton.style.display = "none";
     //start timer
@@ -109,6 +119,9 @@ function startQuiz(){
     updateQuestion();
      
 }  
+
+
+// If the quiz fails this function restarts the timeLeft, sets the quizTime, resets the display timer, and resets the currectQuestionIndex
 
 function tryAgain(){
     timeLeft = 60;
@@ -120,6 +133,8 @@ function tryAgain(){
     countDown();
     updateQuestion();    
 }  
+
+// The following method, clears the quiz container and makes a statement that if the index is less than length the currentQuestion = questions, currentQuestionIndex increases by one, it then displays the next question and the next set of options. Otherwise, the scoreFrom is loaded otherwise the timer is cleared the timer display changes to complete and timeLeft is given the value that is on the timer, the score than equals the timeLeft
 
 function updateQuestion() {
     clearQuizContainer();
@@ -158,6 +173,8 @@ function handleAnswerClicked(isCorrect) {
     
 }
 
+// The following method states that if the answer is correct to display a text that says "that is correct in green font"
+
 function resultCorrect() {
     const correctResult = document.getElementById("answerResult")
     correctResult.textContent = "That is correct!";
@@ -165,12 +182,16 @@ function resultCorrect() {
     correctResult.style.color = "Green"
 }
 
+// The following method states that if the incorrect answer is clicked that the text content displays incorrect and red.
+
 function incorrectResult() {
     const incorrectResult = document.getElementById("answerResult")
     incorrectResult.textContent = "That is incorrect! Try again!";
     incorrectResult.style.display = "block"; 
     incorrectResult.style.color = "red";
 }
+
+// the following method gives correctAnswer the currentQuestion.correctAnswer and then sets an operation that for each option, index, creates a button and sets a btn class, and on click determines if the correct answer is pressed it then creates the a text that is obtained from the options 
 
 function setOptions() {
     const correctAnswer = currentQuestion.correctAnswer;
@@ -191,6 +212,7 @@ function setOptions() {
     })
 }
 
+// this method states that if the time runs it, it displays failed, and shows the tryAgainButton
 
 function quizFailed() {
        const failed = document.getElementById("failed");
@@ -204,6 +226,8 @@ function quizFailed() {
 
 
 const quizForm = document.getElementById("scoreForm")
+
+// This method creates a form, with an input and submit button and appends all to the quizContainer
 
 function scoreForm() {
 
@@ -239,6 +263,8 @@ function scoreForm() {
     form.appendChild(sub)
     quizContainer.appendChild(form)
 }
+
+// This metehod saves the score to localStorage 
 
 function savingScore() {
     const storage = window.localStorage;

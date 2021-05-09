@@ -1,20 +1,24 @@
 const highScoresContainer = document.getElementById('highScores');
-// let highScore = []
+let highScore = []
 // let highScoreIndex = 0;
+console.log(highScore)
 
 
 
 function getHighScores() {
     const storage = window.localStorage;
     const scoreHistory = JSON.parse(storage.getItem('score')) || []; 
+    scoreHistory.sort((a, b ) =>{
+        return b.score - a.score;
+})
     console.log('scoreHistory', scoreHistory);
 
     scoreHistory.forEach( (scoreDataSet) => {
     console.log("score", scoreDataSet);   
     createScoreListItem(scoreDataSet)
     })
-
-    // highScore.push(scoreHistory);
+  
+    highScore.push(scoreHistory);
     
 }
 
@@ -32,15 +36,11 @@ function createScoreListItem(scoreData) {
     listItem.appendChild(initials);
     listItem.appendChild(scoreActual);
     highScoresContainer.appendChild(listItem);
+
 } 
 
 getHighScores();
 
-highScore.sort(function(a, b){
-    return b - a
-});
 
 
-highScoresContainer.innerHTML = highScore.score
 
-highScoresContainer.innerHTML =  highScores.toString()

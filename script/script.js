@@ -238,7 +238,7 @@ function scoreForm() {
         event.preventDefault();
         savingScore();
         clearQuizContainer();
-        window.location.href="highScore.html"
+        window.location.href="./highScore.html"
     })
    
     form.appendChild(initials);

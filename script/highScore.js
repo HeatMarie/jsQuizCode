@@ -1,4 +1,6 @@
 const highScoresContainer = document.getElementById('highScores');
+// let highScore = []
+// let highScoreIndex = 0;
 
 
 
@@ -11,6 +13,9 @@ function getHighScores() {
     console.log("score", scoreDataSet);   
     createScoreListItem(scoreDataSet)
     })
+
+    // highScore.push(scoreHistory);
+    
 }
 
 function createScoreListItem(scoreData) {
@@ -29,5 +34,13 @@ function createScoreListItem(scoreData) {
     highScoresContainer.appendChild(listItem);
 } 
 
-
 getHighScores();
+
+highScore.sort(function(a, b){
+    return b - a
+});
+
+
+highScoresContainer.innerHTML = highScore.score
+
+highScoresContainer.innerHTML =  highScores.toString()

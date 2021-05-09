@@ -58,6 +58,7 @@ const questions = [
 
 
 const startQuizButton = document.getElementById('startQuiz');
+const tryAgainButton = document.getElementById('tryAgainButton')
 const quizContainer = document.getElementById('quiz');
 let currentQuestionIndex = 0;
 let currentQuestion = questions[currentQuestionIndex];
@@ -88,19 +89,7 @@ function countDown() {
 }
 
 
-function resultCorrect() {
-        const correctResult = document.getElementById("answerResult")
-        correctResult.textContent = "That is correct!";
-        correctResult.style.display = "block";
-        correctResult.style.color = "Green"
-}
 
-function incorrectResult() {
-        const incorrectResult = document.getElementById("answerResult")
-        incorrectResult.textContent = "That is incorrect! Try again!";
-        incorrectResult.style.display = "block"; 
-        incorrectResult.style.color = "red";
-}
 
 function clearQuizContainer(){
     quizContainer.innerHTML = '';
@@ -122,6 +111,19 @@ function startQuiz(){
     //start timer
     countDown();
     updateQuestion();
+     
+}  
+
+function tryAgain(){
+    timeLeft = 60;
+    quizTime = 0;
+    timer.innerHTML = timeLeft;
+    currentQuestionIndex = 0;
+     tryAgainButton.style.display = "none";
+    //start timer
+    countDown();
+    updateQuestion();
+  
      
 }  
 
@@ -162,8 +164,19 @@ function handleAnswerClicked(isCorrect) {
     
 }
 
+function resultCorrect() {
+    const correctResult = document.getElementById("answerResult")
+    correctResult.textContent = "That is correct!";
+    correctResult.style.display = "block";
+    correctResult.style.color = "Green"
+}
 
-
+function incorrectResult() {
+    const incorrectResult = document.getElementById("answerResult")
+    incorrectResult.textContent = "That is incorrect! Try again!";
+    incorrectResult.style.display = "block"; 
+    incorrectResult.style.color = "red";
+}
 
 function setOptions() {
     const correctAnswer = currentQuestion.correctAnswer;
@@ -185,16 +198,13 @@ function setOptions() {
 }
 
 
-
-
-
 function quizFailed() {
        const failed = document.getElementById("failed");
        failedText = document.createElement('p')
-       failedText.innerHTML = "You failed! Start Quiz to try again!"
+       failedText.innerHTML = "You failed!!"
         failedText.style.color = "red";
         quizContainer.appendChild(failedText);
-        startQuizButton.style.display = "block";
+        tryAgainButton.style.display = "block";
 };
 
 
@@ -253,6 +263,6 @@ function savingScore() {
 
 
 startQuizButton.addEventListener('click', startQuiz);
-
+tryAgainButton.addEventListener('click', tryAgain);
 
 
